@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heroes App</title>
+  <link rel="stylesheet" href="css/foundation.css" />
+  <script src="js/vendor/modernizr.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBgNvHBbUqo5mL8wdkspPJADjHP9XuNJC8",
+      authDomain: "heroesapp-96b6c.firebaseapp.com",
+      databaseURL: "https://heroesapp-96b6c.firebaseio.com",
+      storageBucket: "heroesapp-96b6c.appspot.com",
+      messagingSenderId: "889264958286"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script type="text/javascript">
+  // Returns true if user is signed-in. Otherwise false and displays a message.
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          alert('user ada')
+        } else {
+          // No user is signed in.
+          alert('user null')
+          window.location.href = "index.html"
+        }
+      });
+
+  function userLogout(){
+    if (firebase.auth().currentUser) {
+      // [START signout]
+      firebase.auth().signOut();
+      alert('logout')
+      // [END signout]
+    }
+  }
+
+  //  document.getElementById('logout').addEventListener('click', userLogout, false);
+    window.onload = function() {
+  //    initApp();
+    };
+    </script>
+
+</head>
+<body>
+
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+    <nav class="tab-bar show-for-small">
+      <section class="tab-bar-section">
+        <img src="" style="margin-left:50px">
+      </section>
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon"
+        href="#"><span></span></a>
+      </section>
+    </nav>
+
+    <!-- top bar -->
+  <div class="sticky">
+  <nav class="top-bar hide-for-small" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a class="#">Heroes App</a></h1>
+      </li>
+      <!-- <li class="toggle-topbar menu-icon">
+        <a href="#"><span>Menu</span></a>
+      </li> -->
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        <li class="active" onclick="userLogout()"><a href="index.html">Logout</a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+
+<aside class="left-off-canvas-menu">
+  <ul class="off-canvas-list">
+    <li><a href="hero.html"><img src="img/hero_50.png"> Pahlawan</a></li>
+    <li><a href="#" style="background:#008CBA"><img src="img/quiz_50.png"> Kuis</a></li>
+	<li onclick="userLogout()"><a href="index.html"><img src="img/out_50.png"> Log Out</a></li>
+  </ul>
+</aside>
+
+
+<section class="main-section">
+  <aside class="columns medium-3 large-2 hide-for-small"
+  style="position:fixed; padding:0; height:100%">
+  <!-- <div class="hide-for-small-only"> -->
+  <div class="icon-bar three-up vertical">
+
+   <a class="item" href="hero.html">
+      <img src="img/hero_50.png">
+      <label>Pahlawan</label>
+    </a>
+    <a class="item active" href="#">
+      <img src="img/quiz_50.png">
+      <label>Kuis</label>
+    </a>
+  </div>
+
+</aside>
+
+<content class="columns medium-9 medium-offset-3 large-10 large-offser-2">
+  <div style="min-height:400px">
+
+    <div class="row" style="margin-top:20px">
+    	<div class="columns large-12">
+    		<h3><i class="fi-page-edit"></i>&nbsp; Tambah Pertanyaan</h3>
+    	</div>
+    </div>
+
+    <div class="row">
+    <div class="columns large-12">
+
+      <!-- <div id="messages">
+        <span id="message-filler"></span>
+      </div> -->
+
+      <!-- form -->
+    <form id="message-form" action="#" data-abide>
+    <table width="100%">
+		<tr>
+    		<td>Nomor</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="nomorInput" placeholder="Nomor" required>
+            <small class="error">Nomor harus diisi</small>
+    			</div>
+    		</td
+    	<tr>
+    		<td>Pertanyaan</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="pertanyaanInput" placeholder="Pertanyaan" required>
+            <small class="error">Pertanyaan harus diisi</small>
+    			</div>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>Soal 1</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="soal1Input" placeholder="Soal 1" required>
+            <small class="error">Soal 1 harus diisi</small>
+    			</div>
+    		</td>
+    	</tr>
+		<tr>
+    		<td>Soal 2</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="soal2Input" placeholder="Soal 2" required>
+            <small class="error">Soal 2 harus diisi</small>
+    			</div>
+    		</td>
+    	</tr>
+		<tr>
+    		<td>Soal 3</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="soal3Input" placeholder="Soal 3" required>
+            <small class="error">Soal 3 harus diisi</small>
+    			</div>
+    		</td>
+    	</tr>
+		<tr>
+    		<td>Soal 4</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="soal4Input" placeholder="Soal 4" required>
+            <small class="error">Soal 4 harus diisi</small>
+    			</div>
+    		</td>
+    	</tr>
+		<tr>
+    		<td>Jawaban</td>
+    		<td>
+    			<div class="columns medium-6">
+    				<input type="text" id="jawabanInput" placeholder="Jawaban" required>
+            <small class="error">Jawaban harus diisi</small>
+    			</div>
+    		</td>
+    	</tr>
+    </table>
+
+   <div class="row">
+      <div class="columns large-7 medium-12">
+    	<input type="reset" value="Reset" class="button small right warning">
+      <!-- <button type="button" onclick="savedata()" value="Tambah" class="button right small" style="margin-right:50px"> -->
+      <button id="submit" enabled type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Send
+      </button>
+</div>
+</div
+    </form>
+    </div>
+    </div>
+
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Kalori</th>
+      <th>Karbohidrat</th>
+      <th>Protein</th>
+      <th>Lemak</th>
+      <th>Kualitas</th>
+    </tr>
+  </thead>
+</table> -->
+
+</div>
+<div style="clear:both"></div>
+
+<footer>
+  <hr>
+  <p align="center"></p>
+</footer>
+</content>
+
+</section>
+<a class="exit-off-canvas"></a>
+</div>
+</div>
+<!-- </div> -->
+
+<script src="scripts/quiz1.js"></script>
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>
+
+</body>
+</html>
